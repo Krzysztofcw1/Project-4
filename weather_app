@@ -1,0 +1,34 @@
+import requests
+import smtplib
+
+MY_PASSWORD = "1234567890"
+MY_EMAIL = "my_emai@gmail.com"
+
+api = "https://api.openweathermap.org/data/2.8/onecall"
+api_key = "2cc6faad0e852273fb160b5052bce615"
+weather_parms = {
+    "exclude": "current,minutely,daily",
+    "lat": *****,
+    "lon": *****,
+    "appid": api_key
+}
+
+response = requests.get(api, params=weather_parms)
+response.raise_for_status()
+weather_data = response.json()
+
+will_rain = False
+
+a = 0
+while a != 12:
+    type_of_weather = weather_data["hourly"][0]["weather"][0]["id"]
+    if int(type_of_weather) < 700:
+        will_rain = True
+    a += 1
+
+if will_rain:
+    with smtplib.SMTP("smtp.gmail.com", port=25) as connection:
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL, to_addrs="email@yahoo.com",
+                            msg="Weather\\It will be better for you if you take an umbrella")
