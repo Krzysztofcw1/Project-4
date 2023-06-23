@@ -5,7 +5,7 @@ MY_PASSWORD = "1234567890"
 MY_EMAIL = "my_emai@gmail.com"
 
 api = "https://api.openweathermap.org/data/2.8/onecall"
-api_key = "2cc6faad0e852273fb160b5052bce615"
+api_key = "************************"
 weather_parms = {
     "exclude": "current,minutely,daily",
     "lat": *****,
